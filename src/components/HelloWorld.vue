@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="animation-wrapper">
-    <lottie :options="defaultOptions" id="lottieAni" class="animation" :height="400" :width="400" v-on:animCreated="handleAnimation"/>
+    <lottie :options="defaultOptions" id="lottieAni" class="animation anihight" :height="400" :width="400" v-on:animCreated="handleAnimation"/>
     </div>
     <div class="text">Hallo, wollen Sie ein wütendes Einhorn sehen?</div>
     <button class="glow-on-hover button" type="button" v-if="show" v-on:click="play">Ja das will ich sehen</button>
@@ -63,7 +63,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
+.anihight {
+  max-height: 300px;
+}
 .animation-wrapper{
   min-height: 400px;
 }
