@@ -63,12 +63,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.text{
-  font-size: 18px;
-}
 
 .animation-wrapper{
-  min-height: 500px;
+  min-height: 700px;
 }
 .animation {
   display: none;
