@@ -65,7 +65,7 @@ export default {
 
 
 .animation-wrapper{
-  min-height: 700px;
+  min-height: 400px;
 }
 .animation {
   display: none;
