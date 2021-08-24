@@ -11,9 +11,9 @@
     "bodymovin": "^4.13.0",
     "core-js": "^3.6.5",
     "i": "^0.3.6",
-    "lottie-vuejs": "^0.4.0",
     "npm": "^7.21.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-lottie": "^0.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

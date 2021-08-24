@@ -1,34 +1,94 @@
 <template>
   <div class="center">
-    <lottie-animation
-        path="https://assets6.lottiefiles.com/packages/lf20_zye32mry.json"
-        :loop="true"
-        :autoPlay="true"
-        :loopDelayMin="2.5"
-        :loopDelayMax="5"
-        :speed="1"
-        :width="256"
-        :height="256"
-    />
-    <div>Hallo, wollen Sie ein wütendes Einhorn sehen?</div>
-    <button class="glow-on-hover button" type="button">Ja das will ich sehen</button>
+    <div class="animation-wrapper">
+    <lottie :options="defaultOptions" id="lottieAni" class="animation" :height="400" :width="400" v-on:animCreated="handleAnimation"/>
+    </div>
+    <div class="text">Hallo, wollen Sie ein wütendes Einhorn sehen?</div>
+    <button class="glow-on-hover button" type="button" v-if="show" v-on:click="play">Ja das will ich sehen</button>
+    <button class="glow-on-hover button" type="button" v-else v-on:click="stop">Danke es reicht</button>
   </div>
 </template>
 
 <script>
-import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
-export default {
+import Lottie from 'vue-lottie'
+import data from '/src/angry.json';
 
-  name: 'HelloWorld',
+export default {
+  name: 'unicorn',
   components: {
-    LottieAnimation
+    Lottie
   },
+  data() {
+    return {
+      defaultOptions: {animationData: data, autoplay: false},
+      animationSpeed: 1,
+      show: true
+    }
+  },
+  methods: {
+    handleAnimation: function (anim) {
+      this.anim = anim;
+    },
+    stop: function () {
+      let element = document.getElementById("lottieAni");
+      element.classList.add("remove");
+      setTimeout(function() {
+        element.classList.add("animation")
+      }, 3000);
+      this.show = true
+    },
+
+    play: function () {
+      this.anim.stop();
+      let element = document.getElementById("lottieAni");
+      element.classList.remove("animation")
+      element.classList.remove("remove")
+      element.classList.add("show")
+      this.show = false
+      this.anim.play();
+    },
+
+    pause: function () {
+      this.anim.pause();
+    },
+
+    onSpeedChange: function () {
+      this.anim.setSpeed(this.animationSpeed);
+    }
+  }
 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.text{
+  font-size: 18px;
+}
+
+.animation-wrapper{
+  min-height: 500px;
+}
+.animation {
+  display: none;
+}
+.show {
+  animation: fadeIn 5s;
+}
+.remove {
+  animation: fadeOut 3s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@keyframes fadeOut {
+  0% {opacity:1;}
+  100% {opacity:0;}
+}
+
 .center {
   display: flex;
   flex-flow: column;
