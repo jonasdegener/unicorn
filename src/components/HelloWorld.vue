@@ -31,19 +31,18 @@ export default {
     },
     stop: function () {
       let element = document.getElementById("lottieAni");
-      element.classList.add("remove");
-      setTimeout(function() {
-        element.classList.add("animation")
-      }, 3000);
       this.show = true
+      element.classList.add("animation")
+      element.classList.remove("show")
+
     },
 
     play: function () {
       this.anim.stop();
       let element = document.getElementById("lottieAni");
+      element.classList.add("show")
       element.classList.remove("animation")
       element.classList.remove("remove")
-      element.classList.add("show")
       this.show = false
       this.anim.play();
     },
@@ -73,19 +72,11 @@ export default {
   display: none;
 }
 .show {
-  animation: fadeIn 5s;
+  animation: fadeIn 3s;
 }
-.remove {
-  animation: fadeOut 3s;
-}
-
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
-}
-@keyframes fadeOut {
-  0% {opacity:1;}
-  100% {opacity:0;}
 }
 
 .center {
